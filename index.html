@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Riad Amirat Al Jamal — Maison d'hôtes de charme, Médina de Marrakech</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="#home" class="nav-logo">
+        <img src="images/logo.png" alt="Riad Amirat Al Jamal" class="nav-logo-img">
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-label="Ouvrir la navigation">
+        <span class="hamburger"></span>
+      </button>
+      <ul class="nav-menu" id="navMenu">
+        <li><a href="#home" class="nav-link active">Accueil</a></li>
+        <li><a href="#rooms" class="nav-link">Chambres</a></li>
+        <li><a href="#amenities" class="nav-link">Services</a></li>
+        <li><a href="#dining" class="nav-link">Restauration</a></li>
+        <li><a href="#excursions" class="nav-link">Excursions</a></li>
+        <li><a href="#gallery" class="nav-link">Galerie</a></li>
+        <li><a href="#about" class="nav-link">Notre Histoire</a></li>
+        <li><a href="#contact" class="nav-link">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero" id="home">
+    <div class="hero-overlay"></div>
+    <div class="hero-arch">
+      <div class="hero-content">
+        <p class="hero-subtitle">Bienvenue dans un jardin secret</p>
+        <h1 class="hero-title">Riad Amirat<br>Al Jamal</h1>
+        <p class="hero-tagline">Au cœur de la médina de Marrakech, une maison du XVIIIᵉ siècle où l'artisanat marocain rencontre le silence retrouvé.</p>
+        <a href="#rooms" class="btn btn-primary">Découvrir nos chambres</a>
+      </div>
+    </div>
+    <div class="scroll-indicator">
+      <span class="scroll-line"></span>
+    </div>
+
+    <!-- Booking Form -->
+    <div class="booking-bar">
+      <form class="booking-form" id="bookingForm">
+        <div class="booking-field">
+          <label for="checkIn">Arrivée</label>
+          <input type="date" id="checkIn" name="checkIn" required>
+        </div>
+        <div class="booking-field">
+          <label for="checkOut">Départ</label>
+          <input type="date" id="checkOut" name="checkOut" required>
+        </div>
+        <div class="booking-field">
+          <label for="adults">Adultes</label>
+          <select id="adults" name="adults" required>
+            <option value="1">1 adulte</option>
+            <option value="2" selected>2 adultes</option>
+            <option value="3">3 adultes</option>
+            <option value="4">4 adultes</option>
+            <option value="5">5 adultes</option>
+            <option value="6">6 adultes et +</option>
+          </select>
+        </div>
+        <div class="booking-field">
+          <label for="children">Enfants</label>
+          <select id="children" name="children">
+            <option value="0" selected>0 enfant</option>
+            <option value="1">1 enfant</option>
+            <option value="2">2 enfants</option>
+            <option value="3">3 enfants</option>
+            <option value="4">4 enfants</option>
+          </select>
+        </div>
+        <div class="booking-field child-ages" id="childAgesContainer" style="display:none;"></div>
+        <button type="submit" class="btn btn-book">Vérifier la disponibilité</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Rooms Section -->
+  <section class="rooms" id="rooms">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">Hébergement</span>
+        <h2 class="section-title">Nos Chambres</h2>
+        <p class="section-desc">Cinq chambres, chacune avec son propre caractère — zellige, tadelakt et bois de cèdre sculpté façonnés par les artisans de la médina.</p>
+      </div>
+      <div class="rooms-grid rooms-grid-5">
+        <article class="room-card">
+          <div class="room-image">
+            <img src="images/room-royale.jpg" alt="Grand Chamber">
+          </div>
+          <div class="room-info">
+            <h3>Grand Chamber</h3>
+            <p class="room-desc">La plus spacieuse de nos chambres, baignée de lumière et ouverte sur le patio, pour un séjour au grand confort.</p>
+            <ul class="room-features">
+              <li><span>Lit King</span></li>
+              <li><span>Vue Patio</span></li>
+              <li><span>Wifi gratuit</span></li>
+            </ul>
+            <a href="#contact" class="btn btn-outline">Réserver</a>
+          </div>
+        </article>
+
+        <article class="room-card">
+          <div class="room-image">
+            <img src="images/room-ambre.jpg" alt="Blue Chamber">
+          </div>
+          <div class="room-info">
+            <h3>Chamber Blue </h3>
+            <p class="room-desc">Une chambre aux tons bleus apaisants, ornée de zellige fait main et pensée pour le repos.</p>
+            <ul class="room-features">
+              <li><span>Lit Queen</span></li>
+              <li><span>Salle de bain privée</span></li>
+              <li><span>Wifi gratuit</span></li>
+            </ul>
+            <a href="#contact" class="btn btn-outline">Réserver</a>
+          </div>
+        </article>
+
+        <article class="room-card">
+          <div class="room-image">
+            <img src="images/gallery-terrace-evening.jpg" alt="Terrace Duplex Chamber">
+          </div>
+          <div class="room-info">
+            <h3>Terrace Duplex</h3>
+            <p class="room-desc">Un duplex privé avec accès direct à une terrasse exclusive, pour dormir sous les toits de la médina.</p>
+            <ul class="room-features">
+              <li><span>Duplex</span></li>
+              <li><span>Terrasse privée</span></li>
+              <li><span>Lit King</span></li>
+            </ul>
+            <a href="#contact" class="btn btn-outline">Réserver</a>
+          </div>
+        </article>
+
+        <article class="room-card">
+          <div class="room-image">
+            <img src="images/room-jasmin.jpg" alt="Rachid Chamber">
+          </div>
+          <div class="room-info">
+            <h3>Chamber Rachid </h3>
+            <p class="room-desc">Un cocon chaleureux au décor traditionnel, avec vue sur le patio et sa fontaine.</p>
+            <ul class="room-features">
+              <li><span>Lit Queen</span></li>
+              <li><span>Vue Patio</span></li>
+              <li><span>Wifi gratuit</span></li>
+            </ul>
+            <a href="#contact" class="btn btn-outline">Réserver</a>
+          </div>
+        </article>
+
+        <article class="room-card">
+          <div class="room-image">
+            <img src="images/gallery-salon.jpg" alt="Margaret Chamber">
+          </div>
+          <div class="room-info">
+            <h3>Chamber Margaret</h3>
+            <p class="room-desc">Une chambre intimiste aux tapis berbères et à la lumière tamisée, proche du salon marocain.</p>
+            <ul class="room-features">
+              <li><span>Lit Queen</span></li>
+              <li><span>Décor traditionnel</span></li>
+              <li><span>Wifi gratuit</span></li>
+            </ul>
+            <a href="#contact" class="btn btn-outline">Réserver</a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Amenities Section -->
+  <section class="amenities" id="amenities">
+    <div class="container">
+      <div class="section-header light">
+        <span class="section-label">L'Expérience</span>
+        <h2 class="section-title">Services & Bien-être</h2>
+        <p class="section-desc">Chaque détail est pensé pour ralentir le temps.</p>
+      </div>
+      <div class="amenities-grid">
+        <div class="amenity-card">
+          <div class="amenity-icon">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
+          </div>
+          <h3>Cuisine Marocaine</h3>
+          <p>Tagines, pastillas et pâtisseries au miel, préparés selon les recettes transmises de génération en génération.</p>
+        </div>
+        <div class="amenity-card">
+          <div class="amenity-icon">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8.56 2.75c4.37 6.03 6.02 9.42 8.03 17.72m2.54-15.38c-3.72 4.35-8.94 3.09-12.44.75"/><path d="M2.75 15.38c4.37-1.03 8.94 1.09 12.44 3.75"/></svg>
+          </div>
+          <h3>Piscine du Patio</h3>
+          <p>Une piscine nichée au cœur de la maison, entourée de palmiers et de bougainvilliers en fleurs.</p>
+        </div>
+        <div class="amenity-card">
+          <div class="amenity-icon">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          </div>
+          <h3>Salon Marocain</h3>
+          <p>Tapis berbères, banquettes basses et lumière tamisée, pour lire ou se retrouver après le souk.</p>
+        </div>
+        <div class="amenity-card">
+          <div class="amenity-icon">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </div>
+          <h3>Concierge Médina</h3>
+          <p>Notre équipe vous guide dans les souks, réserve vos excursions et organise chaque détail du séjour.</p>
+        </div>
+        <div class="amenity-card">
+          <div class="amenity-icon">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 17H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-1"/><polygon points="12 15 17 21 7 21 12 15"/></svg>
+          </div>
+          <h3>Transfert Aéroport</h3>
+          <p>Accueil privé à l'aéroport de Marrakech-Ménara et transfert en toute sérénité jusqu'au riad.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Dining Section -->
+  <section class="dining" id="dining">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">Table & Saveurs</span>
+        <h2 class="section-title">Restauration</h2>
+        <p class="section-desc">Une cuisine marocaine généreuse, servie dans la salle à manger ou, selon la météo, sur la terrasse. Feuilletez notre carte, page après page.</p>
+      </div>
+
+      <p class="section-note small left">Déjeuners et dîners trois services à 300 MAD par personne. Merci de réserver auprès de notre équipe la veille au soir. Premier soir sur demande : dîner pour deux à 300 MAD par personne (boissons non incluses) — un seul plat par table de deux : végétarien, agneau, bœuf, poulet ou couscous.</p>
+
+      <div class="menu-book" id="menuBook">
+        <button class="book-arrow book-arrow-prev" id="bookPrev" type="button" aria-label="Page précédente">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+        </button>
+
+        <div class="book-stage">
+          <div class="book" id="bookEl">
+
+            <article class="book-page-wrap is-active" data-index="0">
+              <div class="book-page">
+                <div class="book-page-photo">
+                  <img src="images/dishes/hrira.webp" alt="Harira, dattes & shabakia" loading="lazy" onerror="this.style.display='none'">
+                </div>
+                <div class="book-page-content">
+                  <span class="book-page-kicker">Menu</span>
+                  <h3 class="book-page-title">Harira, dattes & shabakia</h3>
+                  <p class="book-page-desc">Une soupe marocaine traditionnelle aux lentilles, pois chiches et tomates, parfumée aux épices de la maison, servie avec des dattes fondantes et des shabakias croustillantes au miel.</p>
+                </div>
+                <span class="book-page-number">01</span>
+              </div>
+            </article>
+
+            <article class="book-page-wrap" data-index="1">
+              <div class="book-page">
+                <div class="book-page-photo">
+                  <img src="images/dishes/COUSCOUS.webp" alt="Couscous aux légumes" loading="lazy" onerror="this.style.display='none'">
+                </div>
+                <div class="book-page-content">
+                  <span class="book-page-kicker">Menu</span>
+                  <h3 class="book-page-title">Couscous aux légumes</h3>
+                  <p class="book-page-desc">Semoule vapeur moelleuse surmontée de légumes de saison mijotés lentement, dans la pure tradition du couscous du vendredi.</p>
+                </div>
+                <span class="book-page-number">02</span>
+              </div>
+            </article>
+
+            <article class="book-page-wrap" data-index="2">
+              <div class="book-page">
+                <div class="book-page-photo">
+                  <img src="images/dishes/SALADE.webp" alt="Salade marocaine" loading="lazy" onerror="this.style.display='none'">
+                </div>
+                <div class="book-page-content">
+                  <span class="book-page-kicker">Menu</span>
+                  <h3 class="book-page-title">Salade marocaine</h3>
+                  <p class="book-page-desc">Tomates, oignons, poivrons et concombre finement coupés, relevés d'huile d'olive, de citron et d'un soupçon de coriandre fraîche.</p>
+                </div>
+                <span class="book-page-number">03</span>
+              </div>
+            </article>
+
+            <article class="book-page-wrap" data-index="3">
+              <div class="book-page">
+                <div class="book-page-photo">
+                  <img src="images/dishes/TAJIL7AM.avif" alt="Tajine d'agneau aux pruneaux & amandes" loading="lazy" onerror="this.style.display='none'">
+                </div>
+                <div class="book-page-content">
+                  <span class="book-page-kicker">Menu</span>
+                  <h3 class="book-page-title">Tajine d'agneau aux pruneaux & amandes</h3>
+                  <p class="book-page-desc">Agneau fondant mijoté à l'étouffée avec pruneaux sucrés, amandes grillées et un voile de cannelle, entre douceur et tradition citadine.</p>
+                </div>
+                <span class="book-page-number">04</span>
+              </div>
+            </article>
+
+            <article class="book-page-wrap" data-index="4">
+              <div class="book-page">
+                <div class="book-page-photo">
+                  <img src="images/dishes/TAJINPOULE.jpg" alt="Tajine de poulet, olives & citron confit" loading="lazy" onerror="this.style.display='none'">
+                </div>
+                <div class="book-page-content">
+                  <span class="book-page-kicker">Menu</span>
+                  <h3 class="book-page-title">Tajine de poulet, olives & citron confit</h3>
+                  <p class="book-page-desc">Poulet fermier braisé au safran et gingembre, accompagné d'olives et de citron confit, un classique de la cuisine marocaine.</p>
+                </div>
+                <span class="book-page-number">05</span>
+              </div>
+            </article>
+
+            <article class="book-page-wrap" data-index="5">
+              <div class="book-page">
+                <div class="book-page-photo">
+                  <img src="images/dishes/SALADE2.avif" alt="Salade" loading="lazy" onerror="this.style.display='none'">
+                </div>
+                <div class="book-page-content">
+                  <span class="book-page-kicker">Menu</span>
+                  <h3 class="book-page-title">Salade</h3>
+                  <p class="book-page-desc">Une salade fraîche et croquante, préparée avec les légumes du marché, pour ouvrir le repas en légèreté.</p>
+                </div>
+                <span class="book-page-number">06</span>
+              </div>
+            </article>
+
+            <article class="book-page-wrap" data-index="6">
+              <div class="book-page">
+                <div class="book-page-photo">
+                  <img src="images/dishes/SPAGITI.avif" alt="Spaghetti sauce bolognaise" loading="lazy" onerror="this.style.display='none'">
+                </div>
+                <div class="book-page-content">
+                  <span class="book-page-kicker">Menu</span>
+                  <h3 class="book-page-title">Spaghetti sauce bolognaise</h3>
+                  <p class="book-page-desc">Pâtes al dente nappées d'une sauce bolognaise mijotée longuement, un clin d'œil italien à notre table marocaine.</p>
+                </div>
+                <span class="book-page-number">07</span>
+              </div>
+            </article>
+
+            <article class="book-page-wrap" data-index="7">
+              <div class="book-page">
+                <div class="book-page-photo">
+                  <img src="images/dishes/PAIN.avif" alt="Pain à l'ail" loading="lazy" onerror="this.style.display='none'">
+                </div>
+                <div class="book-page-content">
+                  <span class="book-page-kicker">Menu</span>
+                  <h3 class="book-page-title">Pain à l'ail</h3>
+                  <p class="book-page-desc">Pain doré au four, généreusement parfumé au beurre à l'ail et aux herbes fraîches.</p>
+                </div>
+                <span class="book-page-number">08</span>
+              </div>
+            </article>
+
+          </div>
+
+          <div class="book-page-count"><span id="bookPageCurrent">1</span> / <span id="bookPageTotal">8</span></div>
+        </div>
+
+        <button class="book-arrow book-arrow-next" id="bookNext" type="button" aria-label="Page suivante">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+        </button>
+      </div>
+
+      <p class="dish-book-note">Dessert, café ou thé inclus dans chaque menu.</p>
+    </div>
+  </section>
+
+  <!-- Excursions Section -->
+  <section class="excursions" id="excursions">
+    <div class="container">
+      <div class="section-header light">
+        <span class="section-label">Au-delà du Riad</span>
+        <h2 class="section-title">Excursions</h2>
+        <p class="section-desc">Journées en minivan avec chauffeur (anglophone ou non), hors repas, entrées et pourboires — sur réservation.</p>
+      </div>
+      <div class="excursions-grid">
+        <div class="excursion-card">
+          <div class="excursion-bg">
+            <img src="images/excursions/agadir.avif" alt="Agadir" loading="lazy" onerror="this.style.display='none'">
+          </div>
+          <div class="excursion-content">
+            <h3>Agadir</h3>
+            <p>Plage et station balnéaire</p>
+            <span class="excursion-price">2300 MAD</span>
+          </div>
+        </div>
+        <div class="excursion-card">
+          <div class="excursion-bg">
+            <img src="images/excursions/swira.webp" alt="Essaouira" loading="lazy" onerror="this.style.display='none'">
+          </div>
+          <div class="excursion-content">
+            <h3>Essaouira</h3>
+            <p>Plage et médina historique</p>
+            <span class="excursion-price">2000 MAD</span>
+          </div>
+        </div>
+        <div class="excursion-card">
+          <div class="excursion-bg">
+            <img src="images/excursions/jibalatlas.avif" alt="Haut Atlas" loading="lazy" onerror="this.style.display='none'">
+          </div>
+          <div class="excursion-content">
+            <h3>Haut Atlas</h3>
+            <p>Villages berbères jusqu'au pied du Jebel Toubkal (mule en option jusqu'au Kasbah Toubkal, déjeuner non inclus)</p>
+            <span class="excursion-price">1800 MAD <small>/ 2 pers.</small></span>
+          </div>
+        </div>
+        <div class="excursion-card">
+          <div class="excursion-bg">
+            <img src="images/excursions/orika.webp" alt="Vallée de l'Ourika" loading="lazy" onerror="this.style.display='none'">
+          </div>
+          <div class="excursion-content">
+            <h3>Vallée de l'Ourika</h3>
+            <p>Visite matinale de la vallée berbère</p>
+            <span class="excursion-price">1200 MAD</span>
+          </div>
+        </div>
+        <div class="excursion-card">
+          <div class="excursion-bg">
+            <img src="images/excursions/casa.webp" alt="Casablanca" loading="lazy" onerror="this.style.display='none'">
+          </div>
+          <div class="excursion-content">
+            <h3>Casablanca</h3>
+            <p>Excursion à la journée</p>
+            <span class="excursion-price">2500 MAD</span>
+          </div>
+        </div>
+      </div>
+      <div class="pricing-block light">
+        <h3 class="pricing-title">Guides (sur réservation)</h3>
+        <table class="price-table light">
+          <tbody>
+            <tr><td>Guide, visite de Marrakech (3h, sans véhicule)</td><td>600 MAD</td></tr>
+            <tr><td>Guide, visite de Marrakech (6h, sans véhicule)</td><td>1000 MAD</td></tr>
+            <tr><td>Guide pour excursion hors Marrakech</td><td>Nous consulter</td></tr>
+            <tr><td>Guide avec véhicule, visite de Marrakech (3h)</td><td>Nous consulter</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gallery Section -->
+  <section class="gallery" id="gallery">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">Voyage Visuel</span>
+        <h2 class="section-title">Galerie</h2>
+        <p class="section-desc">Un aperçu de la sérénité qui vous attend.</p>
+      </div>
+      <div class="gallery-grid">
+        <div class="gallery-item large" data-full="images/gallery-facade.jpg">
+          <img src="images/gallery-facade.jpg" alt="Riad Amirat Al Jamal" loading="lazy">
+        </div>
+        <div class="gallery-item" data-full="images/gallery-salon.jpg">
+          <img src="images/gallery-salon.jpg" alt="Riad Amirat Al Jamal" loading="lazy">
+        </div>
+        <div class="gallery-item" data-full="images/gallery-dining.jpg">
+          <img src="images/gallery-dining.jpg" alt="Riad Amirat Al Jamal" loading="lazy">
+        </div>
+        <div class="gallery-item" data-full="images/gallery-pool.jpg">
+          <img src="images/gallery-pool.jpg" alt="Riad Amirat Al Jamal" loading="lazy">
+        </div>
+        <div class="gallery-item" data-full="images/gallery-hammam.jpg">
+          <img src="images/gallery-hammam.jpg" alt="Riad Amirat Al Jamal" loading="lazy">
+        </div>
+        <div class="gallery-item large" data-full="images/gallery-terrace-evening.jpg">
+          <img src="images/gallery-terrace-evening.jpg" alt="Riad Amirat Al Jamal" loading="lazy">
+        </div>
+        <div class="gallery-item" data-full="images/about-courtyard.jpg">
+          <img src="images/about-courtyard.jpg" alt="Riad Amirat Al Jamal" loading="lazy">
+        </div>
+        <div class="gallery-item" data-full="images/room-jasmin.jpg">
+          <img src="images/room-jasmin.jpg" alt="Riad Amirat Al Jamal" loading="lazy">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox">
+    <button class="lightbox-close" id="lightboxClose" aria-label="Fermer">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+    <button class="lightbox-nav lightbox-prev" id="lightboxPrev" aria-label="Image précédente">
+      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+    </button>
+    <div class="lightbox-content">
+      <img src="" alt="" id="lightboxImage">
+    </div>
+    <button class="lightbox-nav lightbox-next" id="lightboxNext" aria-label="Image suivante">
+      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+    </button>
+    <div class="lightbox-counter" id="lightboxCounter"></div>
+  </div>
+
+  <!-- About Section -->
+  <section class="about" id="about">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-image">
+          <img src="images/about-courtyard.jpg" alt="Cour intérieure du Riad Amirat Al Jamal">
+        </div>
+        <div class="about-content">
+          <span class="section-label">About Us</span>
+          <h2 class="section-title">Notre Histoire</h2>
+          <p>Niché au cœur du prestigieux quartier des palais de la Médina de Marrakech, Riad Amirat Al Jamal est une véritable oasis de calme où l'authenticité marocaine rencontre le confort moderne.</p>
+          <p>Installé dans une demeure traditionnelle faisant partie d'un ancien palais de la dynastie alaouite, le riad a été soigneusement aménagé afin de préserver le charme de l'architecture marocaine. Chaque espace met en valeur l'artisanat local, les objets berbères, le tadelakt traditionnel et une décoration raffinée qui racontent l'histoire et la richesse culturelle du Maroc.</p>
+          <p>À seulement quelques minutes de la célèbre place Jemaa El Fna et de la mosquée Koutoubia, notre riad offre à ses visiteurs une expérience unique : découvrir l'âme de Marrakech tout en profitant d'un cadre paisible, chaleureux et élégant..</p>
+          <div class="about-stats">
+            
+            <div class="stat">
+              <span class="stat-number">5</span>
+              <span class="stat-label">Chambres Uniques</span>
+            </div>
+            <div class="stat">
+              <span class="stat-number">4.9</span>
+              <span class="stat-label">Avis Voyageurs / 5</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="testimonials">
+    <div class="container">
+      <div class="section-header light">
+        <span class="section-label">Avis de Voyageurs</span>
+        <h2 class="section-title">Ils en Parlent Mieux que Nous</h2>
+      </div>
+      <div class="testimonials-slider" id="testimonialsSlider">
+        <div class="testimonial-card active">
+          <div class="testimonial-stars">★★★★</div>
+          <p class="testimonial-text">Située ds ruelle - non accessibles aux voitures - à 3 minutes à pieds de place JemaaElFna à hauteur de la mosquée Koutoubia, excellent repère, beau riad très calme, chambre spacieuse et literie parfaite, rooftop où prendre soleil mais pas le petit déjeuner simple et classique qui se prend au rez-de-chaussée.</p>
+          <div class="testimonial-author">
+            <span class="author-name">Marie</span>
+            <span class="author-title">Belgique</span>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <div class="testimonial-stars">★★★★★</div>
+          <p class="testimonial-text">Personnel au petit soin, très sympathique. La tortue est la star de cet hôtel. Bon emplacement.</p>
+          <div class="testimonial-author">
+            <span class="author-name">Mariko</span>
+            <span class="author-title">Japon</span>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <div class="testimonial-stars">★★★★★</div>
+          <p class="testimonial-text">« L' emplacement est à deux pas de la place, notre hôte Said très gentil et disponible, la beauté du Riad »</p>
+          <div class="testimonial-author">
+            <span class="author-name">Bourdon</span>
+            <span class="author-title">France</span>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-dots" id="testimonialDots">
+        <button class="dot active" data-index="0" aria-label="Avis 1"></button>
+        <button class="dot" data-index="1" aria-label="Avis 2"></button>
+        <button class="dot" data-index="2" aria-label="Avis 3"></button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="contact" id="contact">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">Nous Contacter</span>
+        <h2 class="section-title">Réservations & Renseignements</h2>
+        <p class="section-desc">Nous serions ravis de vous accueillir. Écrivez-nous pour une réservation, une question ou une demande particulière.</p>
+      </div>
+      <div class="contact-grid">
+        <div class="contact-info">
+          <div class="contact-item">
+            <div class="contact-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+            <div>
+              <h4>Adresse</h4>
+              <p>33 Rue Fhal Zefriti, Médina<br>40000 Marrakech, Maroc<br><span class="contact-note">(juste à côté de Riad BB Marrakech)</span></p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            </div>
+            <div>
+              <h4>Téléphone</h4>
+              <p>
+                <a href="tel:+212524378653">+212 682 896 898</a><br>
+              </p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            </div>
+            <div>
+              <h4>Email</h4>
+              <p><a href="mailto:riadamirataljamal@gmail.com">riadamirataljamal@gmail.com</a></p>
+            </div> `
+          </div>
+          <a href="https://maps.app.goo.gl/DgiLPstjf7ZNY1FN7" target="_blank" rel="noopener" class="btn btn-outline btn-map">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Voir l'itinéraire sur Google Maps
+          </a>
+          <div class="policy-box">
+            <h4>Politique de réservation</h4>
+            <p>Un acompte équivalent à un tiers du séjour est demandé, non remboursable en cas de no-show. Annulation entre J-7 et l'arrivée (ou no-show) : 100% du séjour retenu. Entre J-21 et J-7 : 50% du séjour retenu.</p>
+          </div>
+        </div>
+        <div class="contact-form-wrapper">
+          <form class="contact-form" id="contactForm">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="contactName">Nom complet</label>
+                <input type="text" id="contactName" name="name" required placeholder="Votre nom">
+              </div>
+              <div class="form-group">
+                <label for="contactEmail">Email</label>
+                <input type="email" id="contactEmail" name="email" required placeholder="vous@email.com">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="contactSubject">Sujet</label>
+              <select id="contactSubject" name="subject" required>
+                <option value="">Sélectionnez un sujet</option>
+                <option value="reservation">Réservation de chambre</option>
+                <option value="dining">Réservation table</option>
+                <option value="hammam">Rendez-vous hammam</option>
+                <option value="event">Privatisation du riad</option>
+                <option value="other">Autre demande</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="contactMessage">Message</label>
+              <textarea id="contactMessage" name="message" rows="5" required placeholder="Comment pouvons-nous vous aider ?"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary btn-full">Envoyer le message</button>
+          </form>
+          <div class="form-success" id="formSuccess">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            <h3>Message Envoyé</h3>
+            <p>Merci de nous avoir écrit. Notre équipe vous répondra sous 24 heures.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="footer-logo">
+            <img src="images/logo.png" alt="Riad Amirat Al Jamal">
+          </div>
+          <h3>Riad Amirat Al Jamal</h3>
+          <p>Une maison au cœur de la médina de Marrakech — Discover a Hidden Oasis.</p>
+        </div>
+        <div class="footer-links">
+          <h4>Navigation</h4>
+          <ul>
+            <li><a href="#home">Accueil</a></li>
+            <li><a href="#rooms">Nos Chambres</a></li>
+            <li><a href="#amenities">Services</a></li>
+            <li><a href="#dining">Restauration</a></li>
+            <li><a href="#excursions">Excursions</a></li>
+            <li><a href="#gallery">Galerie</a></li>
+            <li><a href="#about">Notre Histoire</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h4>Expériences</h4>
+          <ul>
+            <li><a href="#amenities">Hammam Traditionnel</a></li>
+            <li><a href="#amenities">Cuisine Marocaine</a></li>
+            <li><a href="#amenities">Privatisation du Riad</a></li>
+            <li><a href="#amenities">Concierge Médina</a></li>
+            <li><a href="#amenities">Transfert Aéroport</a></li>
+          </ul>
+        </div>
+        <div class="footer-contact">
+          <h4>Contact</h4>
+          <p>33 Rue Fhal Zefriti, Médina<br>40000 Marrakech, Maroc</p>
+          <p><a href="tel:+212524378653">+212 682 896 898</a></p>
+          <p><a href="mailto:riadamirataljamal@gmail.com">riadamirataljamal@gmail.com</a></p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Riad Amirat Al Jamal. Tous droits réservés.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="booking.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
