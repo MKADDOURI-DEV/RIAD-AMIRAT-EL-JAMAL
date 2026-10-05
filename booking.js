@@ -1,132 +1,180 @@
 // ============================================
-// Nozoul PMS — Channel Manager Booking Engine
+// Connexion au moteur de réservation Nozoul
+// Riad Amirat Al Jamal
 // ============================================
-const NOZOUL_BASE_URL = 'https://riadamirataljamal.nozoul.ma/#/be/3c3a2e91-729c-4f9a-bc11-94612f02a245/book';
+//
+// Le client saisit ses dates et ses voyageurs sur le site, puis il est envoyé
+// sur le moteur Nozoul avec ces informations dans l'adresse, pour ne pas avoir
+// à les ressaisir. Même principe que le site du Riad Dar Soufa.
+//
+// FORMAT ATTENDU PAR NOZOUL (le même que sur le site du Motel Safari) :
+//   ?period=AAAA-MM-JJ,AAAA-MM-JJ&adults=2&child=1&ages=5
+//   - period : date d'arrivée et date de départ séparées par une virgule
+//   - adults : nombre d'adultes
+//   - child  : nombre d'enfants (seulement s'il y en a)
+//   - ages   : âge de chaque enfant, séparés par une virgule
+// Les textes affichés (FR / EN) sont dans i18n.js.
 
-(function () {
-  'use strict';
+import { t, onLangChange } from './i18n.js';
 
-  var state = {
-    checkin: [],
-    checkout: [],
-    childAges: []
-  };
+const NOZOUL_BOOKING_URL =
+  'https://riadamirataljamal.nozoul.ma/#/be/3c3a2e91-729c-4f9a-bc11-94612f02a245/book';
 
-  var checkInInput, checkOutInput, adultsSelect, childrenSelect, childAgesContainer;
+/** Âge maximum d'un enfant pour le moteur Nozoul */
+const MAX_CHILD_AGE = 12;
 
-  function pad(n) {
-    return String(n).padStart(2, '0');
+/** Date du jour + n jours, au format AAAA-MM-JJ (heure locale, pas UTC). */
+function isoDate(offsetDays = 0, from) {
+  const d = from ? new Date(`${from}T12:00:00`) : new Date();
+  d.setDate(d.getDate() + offsetDays);
+  const m = String(d.getMonth() + 1).padStart(2, '0');
+  const day = String(d.getDate()).padStart(2, '0');
+  return `${d.getFullYear()}-${m}-${day}`;
+}
+
+/** Adresse du moteur Nozoul avec les informations du client pré-remplies. */
+function buildNozoulUrl(s) {
+  const q = new URLSearchParams();
+  q.set('period', `${s.checkIn},${s.checkOut}`);
+  q.set('adults', String(s.adults || 1));
+  if (s.children > 0) {
+    q.set('child', String(s.children));
+    const ages = s.childrenAges.slice(0, s.children).filter((a) => a >= 0).join(',');
+    if (ages) q.set('ages', ages);
+  }
+  // Route « hash » : les paramètres se placent après la route du moteur.
+  return `${NOZOUL_BOOKING_URL}?${q.toString()}`;
+}
+
+function initBooking() {
+  const form = document.getElementById('bookingForm');
+  if (!form) return;
+
+  const checkIn = document.getElementById('checkIn');
+  const checkOut = document.getElementById('checkOut');
+  const adults = document.getElementById('adults');
+  const children = document.getElementById('children');
+  const agesBox = document.getElementById('childAgesContainer');
+  const errorBox = document.getElementById('bookingError');
+
+  // Âges déjà choisis, conservés quand on change le nombre d'enfants (-1 = non renseigné)
+  let ages = [];
+  // Clé du message d'erreur affiché, pour le traduire si la langue change
+  let errorKey = '';
+
+  function showError(key) {
+    errorKey = key;
+    if (!errorBox) return;
+    errorBox.textContent = key ? t(key) : '';
+    errorBox.hidden = !key;
   }
 
-  /* Format une date au format ISO attendu par le Booking Engine Nozoul : AAAA-MM-JJ */
-  function formatISO(d) {
-    return d.getFullYear() + "-" + pad(d.getMonth() + 1) + "-" + pad(d.getDate());
-  }
+  // ---- Dates ----
+  checkIn.min = isoDate(0);
+  checkOut.min = isoDate(1);
 
-  function parseInputDate(value) {
-    if (!value) return null;
-    var parts = value.split('-'); // YYYY-MM-DD from <input type="date">
-    return new Date(parseInt(parts[0], 10), parseInt(parts[1], 10) - 1, parseInt(parts[2], 10));
-  }
+  checkIn.addEventListener('change', () => {
+    showError('');
+    if (!checkIn.value) return;
+    checkOut.min = isoDate(1, checkIn.value);
+    if (!checkOut.value || checkOut.value <= checkIn.value) {
+      checkOut.value = isoDate(1, checkIn.value);
+    }
+  });
+  checkOut.addEventListener('change', () => showError(''));
+  adults.addEventListener('change', () => showError(''));
 
-  /* Construit l'URL de redirection (GET) vers le Booking Engine Nozoul,
-     avec les critères de recherche saisis par le client. */
-  function buildNozoulUrl() {
-    var nChildren = parseInt(childrenSelect.value, 10) || 0;
-    var period = formatISO(state.checkin) + "," + formatISO(state.checkout);
-    var adults = adultsSelect.value;
+  // ---- Âge des enfants ----
+  function renderAges() {
+    const count = parseInt(children.value, 10) || 0;
+    while (ages.length < count) ages.push(-1);
+    ages = ages.slice(0, count);
+    agesBox.innerHTML = '';
+    agesBox.style.display = count ? 'flex' : 'none';
 
-    var qs = "period=" + encodeURIComponent(period) +
-      "&adults=" + encodeURIComponent(adults);
+    for (let i = 0; i < count; i++) {
+      const wrapper = document.createElement('div');
+      wrapper.className = 'child-age-field';
 
-    if (nChildren > 0) {
-      var ages = state.childAges.slice(0, nChildren).join(",");
-      qs += "&child=" + encodeURIComponent(String(nChildren));
-      if (ages) {
-        qs += "&ages=" + encodeURIComponent(ages);
+      const label = document.createElement('label');
+      label.setAttribute('for', `childAge${i + 1}`);
+      label.textContent = `${t('book.childAge')} ${i + 1}`;
+
+      const select = document.createElement('select');
+      select.id = `childAge${i + 1}`;
+      select.required = true;
+
+      const placeholder = document.createElement('option');
+      placeholder.value = '';
+      placeholder.textContent = t('book.agePlaceholder');
+      placeholder.disabled = true;
+      select.appendChild(placeholder);
+
+      for (let age = 0; age <= MAX_CHILD_AGE; age++) {
+        const opt = document.createElement('option');
+        opt.value = String(age);
+        opt.textContent = age === 0
+          ? t('book.lessThanOne')
+          : `${age} ${t(age > 1 ? 'book.years' : 'book.year')}`;
+        select.appendChild(opt);
       }
-    }
+      select.value = ages[i] >= 0 ? String(ages[i]) : '';
 
-    return NOZOUL_BASE_URL + "?" + qs;
-  }
-
-  function renderChildAgeFields() {
-    var count = parseInt(childrenSelect.value, 10) || 0;
-    childAgesContainer.innerHTML = '';
-
-    if (count === 0) {
-      childAgesContainer.style.display = 'none';
-      state.childAges = [];
-      return;
-    }
-
-    childAgesContainer.style.display = 'flex';
-
-    for (var i = 1; i <= count; i++) {
-      (function (index) {
-        var wrapper = document.createElement('div');
-        wrapper.className = 'child-age-field';
-
-        var label = document.createElement('label');
-        label.setAttribute('for', 'childAge' + index);
-        label.textContent = 'Âge enfant ' + index;
-
-        var select = document.createElement('select');
-        select.id = 'childAge' + index;
-        select.name = 'childAge' + index;
-        select.required = true;
-
-        for (var age = 0; age <= 12; age++) {
-          var option = document.createElement('option');
-          option.value = String(age);
-          option.textContent = age + (age <= 1 ? ' an' : ' ans');
-          select.appendChild(option);
-        }
-
-        select.value = state.childAges[index - 1] != null ? String(state.childAges[index - 1]) : '0';
-        state.childAges[index - 1] = parseInt(select.value, 10);
-
-        select.addEventListener('change', function () {
-          state.childAges[index - 1] = parseInt(select.value, 10);
-        });
-
-        wrapper.appendChild(label);
-        wrapper.appendChild(select);
-        childAgesContainer.appendChild(wrapper);
-      })(i);
-    }
-
-    state.childAges.length = count;
-  }
-
-  document.addEventListener('DOMContentLoaded', function () {
-    checkInInput = document.getElementById('checkIn');
-    checkOutInput = document.getElementById('checkOut');
-    adultsSelect = document.getElementById('adults');
-    childrenSelect = document.getElementById('children');
-    childAgesContainer = document.getElementById('childAgesContainer');
-
-    if (!childrenSelect || !childAgesContainer) return;
-
-    if (checkInInput) {
-      checkInInput.addEventListener('change', function () {
-        state.checkin = parseInputDate(checkInInput.value);
+      select.addEventListener('change', () => {
+        ages[i] = parseInt(select.value, 10);
+        showError('');
       });
-    }
-    if (checkOutInput) {
-      checkOutInput.addEventListener('change', function () {
-        state.checkout = parseInputDate(checkOutInput.value);
-      });
-    }
 
-    childrenSelect.addEventListener('change', renderChildAgeFields);
-    renderChildAgeFields();
+      wrapper.appendChild(label);
+      wrapper.appendChild(select);
+      agesBox.appendChild(wrapper);
+    }
+  }
+  children.addEventListener('change', () => { showError(''); renderAges(); });
+  renderAges();
+
+  // Changement de langue : on redessine les champs d'âge (valeurs conservées)
+  onLangChange(() => {
+    renderAges();
+    showError(errorKey);
   });
 
-  window.buildNozoulUrl = buildNozoulUrl;
-  window.updateNozoulDates = function () {
-    state.checkin = parseInputDate(checkInInput.value);
-    state.checkout = parseInputDate(checkOutInput.value);
-  };
-})();
+  // ---- Envoi vers Nozoul ----
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const nChildren = parseInt(children.value, 10) || 0;
+    const chosenAges = ages.slice(0, nChildren);
 
+    if (!checkIn.value) { showError('book.errorIn'); checkIn.focus(); return; }
+    if (!checkOut.value || checkOut.value <= checkIn.value) {
+      showError('book.errorOut'); checkOut.focus(); return;
+    }
+    if (chosenAges.length < nChildren || chosenAges.some((a) => !(a >= 0))) {
+      showError('book.errorAge'); return;
+    }
+    showError('');
+
+    window.location.href = buildNozoulUrl({
+      checkIn: checkIn.value,
+      checkOut: checkOut.value,
+      adults: parseInt(adults.value, 10) || 1,
+      children: nChildren,
+      childrenAges: chosenAges,
+    });
+  });
+
+  // ---- Boutons « Réserver » des chambres : ramènent au formulaire ----
+  document.querySelectorAll('[data-book]').forEach((btn) => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      form.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      setTimeout(() => checkIn.focus({ preventScroll: true }), 500);
+    });
+  });
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initBooking);
+} else {
+  initBooking();
+}

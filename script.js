@@ -143,35 +143,8 @@
   }
 
   // ============================================
-  // Booking form
+  // Booking form : géré entièrement dans booking.js (connexion Nozoul)
   // ============================================
-  const bookingForm = document.getElementById('bookingForm');
-  const checkInInput = document.getElementById('checkIn');
-  const checkOutInput = document.getElementById('checkOut');
-
-  if (checkInInput && checkOutInput) {
-    const today = new Date().toISOString().split('T')[0];
-    checkInInput.min = today;
-    checkOutInput.min = today;
-
-    checkInInput.addEventListener('change', function () {
-      checkOutInput.min = checkInInput.value;
-      if (checkOutInput.value && checkOutInput.value <= checkInInput.value) {
-        const nextDay = new Date(checkInInput.value);
-        nextDay.setDate(nextDay.getDate() + 1);
-        checkOutInput.value = nextDay.toISOString().split('T')[0];
-      }
-    });
-  }
-
-  if (bookingForm) {
-    bookingForm.addEventListener('submit', function (e) {
-      e.preventDefault();
-      window.updateNozoulDates();
-      const nozoulUrl = window.buildNozoulUrl();
-      window.open(nozoulUrl, '_blank', 'noopener');
-    });
-  }
 
   // ============================================
   // Contact form
@@ -201,7 +174,8 @@
     const lightboxCounter = document.getElementById('lightboxCounter');
 
     const images = galleryItems.map(function (item) {
-      return item.getAttribute('data-full') || item.querySelector('img').getAttribute('src');
+      // src de l'image affichée : valable en local comme après le build Vite
+      return item.querySelector('img').src || item.getAttribute('data-full');
     });
 
     let currentIndex = 0;

@@ -535,6 +535,17 @@ input, select, textarea {
   flex-basis: 100%;
 }
 
+.booking-error {
+  flex-basis: 100%;
+  margin: 0;
+  font-size: 0.875rem;
+  color: #b3261e;
+}
+
+.booking-error[hidden] {
+  display: none;
+}
+
 .child-age-field {
   flex: 1;
   min-width: 120px;
@@ -2104,4 +2115,58 @@ input, select, textarea {
     flex-direction: column;
     gap: 24px;
   }
+}
+
+/* ============================================
+   Sélecteur de langue FR / EN
+   ============================================ */
+.lang-switch {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  margin-left: 28px;
+  padding: 3px;
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  border-radius: 999px;
+  flex-shrink: 0;
+}
+
+.lang-btn {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  padding: 5px 10px;
+  border-radius: 999px;
+  color: rgba(255, 255, 255, 0.85);
+  background: transparent;
+  cursor: pointer;
+  transition: background-color var(--transition-fast), color var(--transition-fast);
+}
+
+.lang-btn:hover {
+  color: #fff;
+}
+
+.lang-btn[aria-pressed="true"] {
+  background-color: var(--color-accent);
+  color: #fff;
+}
+
+.navbar.scrolled .lang-switch {
+  border-color: var(--color-border);
+}
+
+.navbar.scrolled .lang-btn {
+  color: var(--color-text);
+}
+
+.navbar.scrolled .lang-btn[aria-pressed="true"] {
+  color: #fff;
+}
+
+@media (max-width: 768px) {
+  .nav-logo { order: 1; }
+  .lang-switch { order: 2; margin-left: auto; margin-right: 14px; }
+  .nav-toggle { order: 3; }
 }
