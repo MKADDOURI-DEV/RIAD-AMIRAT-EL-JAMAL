@@ -2170,3 +2170,75 @@ input, select, textarea {
   .lang-switch { order: 2; margin-left: auto; margin-right: 14px; }
   .nav-toggle { order: 3; }
 }
+
+/* ============================================
+   Mobile hero + booking fix
+   ============================================ */
+@media (max-width: 768px) {
+  .hero {
+    min-height: 100svh;
+    justify-content: flex-start;
+    padding: 96px 20px 0;
+  }
+
+  .hero-arch {
+    padding: 56px 16px 32px;
+  }
+
+  .hero-arch::before {
+    height: 100%;
+    top: 0;
+    animation: none;
+    opacity: 0.3;
+  }
+
+  .hero-tagline {
+    font-size: 1rem;
+    margin-bottom: 24px;
+  }
+
+  .scroll-indicator {
+    display: none;
+  }
+
+  /* barre de réservation dans le flux (plus de superposition sur le texte) */
+  .booking-bar {
+    position: relative;
+    left: auto;
+    right: auto;
+    bottom: auto;
+    width: calc(100% + 40px);
+    margin: 8px -20px 0;
+    padding: 20px;
+  }
+
+  .booking-form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    align-items: end;
+  }
+
+  .booking-field {
+    min-width: 0;
+  }
+
+  .booking-field input,
+  .booking-field select {
+    min-height: 48px;
+    padding: 10px 12px;
+    font-size: 0.875rem;
+  }
+
+  .booking-field input[type="date"] {
+    display: block;
+    -webkit-appearance: none;
+    appearance: none;
+  }
+
+  .booking-field.child-ages,
+  .booking-form .btn-book,
+  .booking-error {
+    grid-column: 1 / -1;
+  }
+}
