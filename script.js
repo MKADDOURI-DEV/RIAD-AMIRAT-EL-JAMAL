@@ -221,13 +221,59 @@
       });
     });
 
-    // Photos de chaque chambre (clic sur la photo de la carte)
+    // Photos de chaque chambre : slider (swipe + flèches) + lightbox au clic
     roomGalleries.forEach(function (el) {
-      el.addEventListener('click', function () {
-        const list = el.getAttribute('data-gallery').split(',');
-        const alt = el.getAttribute('data-gallery-alt') || 'Riad Amirat Al Jamal';
-        openLightbox(list, list.map(function () { return alt; }), 0);
+      const list = el.getAttribute('data-gallery').split(',');
+      const alt = el.getAttribute('data-gallery-alt') || 'Riad Amirat Al Jamal';
+      const alts = list.map(function () { return alt; });
+
+      const track = document.createElement('div');
+      track.className = 'room-track';
+      list.forEach(function (src, i) {
+        const img = document.createElement('img');
+        img.src = src;
+        img.alt = alt + ' ' + (i + 1);
+        if (i > 0) img.loading = 'lazy';
+        img.addEventListener('click', function () {
+          openLightbox(list, alts, i);
+        });
+        track.appendChild(img);
       });
+      el.innerHTML = '';
+      el.appendChild(track);
+
+      if (list.length > 1) {
+        const counter = document.createElement('span');
+        counter.className = 'room-counter';
+        counter.textContent = '1 / ' + list.length;
+        const prev = document.createElement('button');
+        prev.type = 'button';
+        prev.className = 'room-nav room-nav-prev';
+        prev.setAttribute('aria-label', 'Photo précédente');
+        prev.innerHTML = '&#8249;';
+        const next = document.createElement('button');
+        next.type = 'button';
+        next.className = 'room-nav room-nav-next';
+        next.setAttribute('aria-label', 'Photo suivante');
+        next.innerHTML = '&#8250;';
+
+        function go(dir) {
+          const w = track.clientWidth;
+          const idx = Math.round(track.scrollLeft / w) + dir;
+          const target = (idx + list.length) % list.length;
+          track.scrollTo({ left: target * w, behavior: 'smooth' });
+        }
+        prev.addEventListener('click', function (e) { e.stopPropagation(); go(-1); });
+        next.addEventListener('click', function (e) { e.stopPropagation(); go(1); });
+        track.addEventListener('scroll', function () {
+          const idx = Math.round(track.scrollLeft / track.clientWidth);
+          counter.textContent = (idx + 1) + ' / ' + list.length;
+        }, { passive: true });
+
+        el.appendChild(prev);
+        el.appendChild(next);
+        el.appendChild(counter);
+      }
     });
 
     if (lightboxClose) lightboxClose.addEventListener('click', closeLightbox);
