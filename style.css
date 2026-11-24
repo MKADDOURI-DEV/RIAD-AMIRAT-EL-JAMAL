@@ -369,7 +369,7 @@ input, select, textarea {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background: url('images/back.jpg') center/cover no-repeat;
+  background: url('images/hero-poster.webp') center/cover no-repeat;
   background-attachment: fixed;
   padding: 120px 24px 180px;
   text-align: center;
@@ -697,7 +697,7 @@ input, select, textarea {
   content: '';
   position: absolute;
   inset: 0;
-  background: url('images/amenities-bg.jpg') center/cover no-repeat;
+  background: url('images/gallery/espaces-4.webp') center/cover no-repeat;
   opacity: 0.06;
 }
 
@@ -1094,7 +1094,7 @@ input, select, textarea {
   content: '';
   position: absolute;
   inset: 0;
-  background: url('images/amenities-bg.jpg') center/cover no-repeat;
+  background: url('images/gallery/espaces-4.webp') center/cover no-repeat;
   opacity: 0.06;
 }
 
@@ -1436,7 +1436,7 @@ input, select, textarea {
   content: '';
   position: absolute;
   inset: 0;
-  background: url('images/testimonials-bg.jpg') center/cover no-repeat;
+  background: url('images/gallery/espaces-7.webp') center/cover no-repeat;
   opacity: 0.04;
 }
 
@@ -2242,3 +2242,14 @@ input, select, textarea {
     grid-column: 1 / -1;
   }
 }
+
+/* Vidéo de fond du hero */
+.hero-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+.hero-overlay { z-index: 1; }

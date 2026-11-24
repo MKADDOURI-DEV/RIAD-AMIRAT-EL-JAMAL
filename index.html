@@ -39,6 +39,9 @@
 
   <!-- Hero Section -->
   <section class="hero" id="home">
+    <video class="hero-video" autoplay muted loop playsinline preload="metadata" poster="images/hero-poster.webp" aria-hidden="true">
+      <source src="images/hero.mp4" type="video/mp4">
+    </video>
     <div class="hero-overlay"></div>
     <div class="hero-arch">
       <div class="hero-content">
@@ -101,8 +104,8 @@
       </div>
       <div class="rooms-grid rooms-grid-5">
         <article class="room-card">
-          <div class="room-image">
-            <img src="images/room-royale.jpg" alt="Grand Chamber">
+          <div class="room-image" data-gallery="/images/rooms/grand/grand-1.webp,/images/rooms/grand/grand-2.webp,/images/rooms/grand/grand-3.webp,/images/rooms/grand/grand-4.webp" data-gallery-alt="Grand Chamber" style="cursor:pointer">
+            <img src="/images/rooms/grand/grand-1.webp" alt="Grand Chamber" loading="lazy">
           </div>
           <div class="room-info">
             <h3>Grand Chamber</h3>
@@ -117,8 +120,8 @@
         </article>
 
         <article class="room-card">
-          <div class="room-image">
-            <img src="images/room-ambre.jpg" alt="Blue Chamber">
+          <div class="room-image" data-gallery="/images/rooms/blue/blue-1.webp,/images/rooms/blue/blue-2.webp,/images/rooms/blue/blue-3.webp" data-gallery-alt="Blue Chamber" style="cursor:pointer">
+            <img src="/images/rooms/blue/blue-1.webp" alt="Blue Chamber" loading="lazy">
           </div>
           <div class="room-info">
             <h3 data-i18n="rooms.blue">Chamber Blue</h3>
@@ -133,8 +136,8 @@
         </article>
 
         <article class="room-card">
-          <div class="room-image">
-            <img src="images/gallery-terrace-evening.jpg" alt="Terrace Duplex Chamber">
+          <div class="room-image" data-gallery="/images/rooms/duplex/duplex-1.webp,/images/rooms/duplex/duplex-2.webp,/images/rooms/duplex/duplex-3.webp,/images/rooms/duplex/duplex-4.webp,/images/rooms/duplex/duplex-5.webp,/images/rooms/duplex/duplex-6.webp,/images/rooms/duplex/duplex-7.webp" data-gallery-alt="Terrace Duplex Chamber" style="cursor:pointer">
+            <img src="/images/rooms/duplex/duplex-1.webp" alt="Terrace Duplex Chamber" loading="lazy">
           </div>
           <div class="room-info">
             <h3>Terrace Duplex</h3>
@@ -149,8 +152,8 @@
         </article>
 
         <article class="room-card">
-          <div class="room-image">
-            <img src="images/room-jasmin.jpg" alt="Rachid Chamber">
+          <div class="room-image" data-gallery="/images/rooms/rachid/rachid-1.webp,/images/rooms/rachid/rachid-2.webp,/images/rooms/rachid/rachid-3.webp,/images/rooms/rachid/rachid-4.webp" data-gallery-alt="Rachid Chamber" style="cursor:pointer">
+            <img src="/images/rooms/rachid/rachid-1.webp" alt="Rachid Chamber" loading="lazy">
           </div>
           <div class="room-info">
             <h3 data-i18n="rooms.rachid">Chamber Rachid</h3>
@@ -165,8 +168,8 @@
         </article>
 
         <article class="room-card">
-          <div class="room-image">
-            <img src="images/gallery-salon.jpg" alt="Margaret Chamber">
+          <div class="room-image" data-gallery="/images/rooms/margaret/margaret-1.webp,/images/rooms/margaret/margaret-2.webp,/images/rooms/margaret/margaret-3.webp,/images/rooms/margaret/margaret-4.webp" data-gallery-alt="Margaret Chamber" style="cursor:pointer">
+            <img src="/images/rooms/margaret/margaret-1.webp" alt="Margaret Chamber" loading="lazy">
           </div>
           <div class="room-info">
             <h3 data-i18n="rooms.margaret">Chamber Margaret</h3>
@@ -459,29 +462,41 @@
         <p class="section-desc" data-i18n="gal.desc">Un aperçu de la sérénité qui vous attend.</p>
       </div>
       <div class="gallery-grid">
-        <div class="gallery-item large" data-full="images/gallery-facade.jpg">
-          <img src="images/gallery-facade.jpg" alt="Riad Amirat Al Jamal" loading="lazy">
+        <div class="gallery-item large" data-full="images/gallery/espaces-5.webp">
+          <img src="images/gallery/espaces-5.webp" alt="Riad Amirat Al Jamal" loading="lazy">
         </div>
-        <div class="gallery-item" data-full="images/gallery-salon.jpg">
-          <img src="images/gallery-salon.jpg" alt="Riad Amirat Al Jamal" loading="lazy">
+        <div class="gallery-item" data-full="images/gallery/espaces-7.webp">
+          <img src="images/gallery/espaces-7.webp" alt="Riad Amirat Al Jamal" loading="lazy">
         </div>
-        <div class="gallery-item" data-full="images/gallery-dining.jpg">
-          <img src="images/gallery-dining.jpg" alt="Riad Amirat Al Jamal" loading="lazy">
+        <div class="gallery-item" data-full="images/gallery/espaces-6.webp">
+          <img src="images/gallery/espaces-6.webp" alt="Riad Amirat Al Jamal" loading="lazy">
         </div>
-        <div class="gallery-item" data-full="images/gallery-pool.jpg">
-          <img src="images/gallery-pool.jpg" alt="Riad Amirat Al Jamal" loading="lazy">
+        <div class="gallery-item" data-full="images/gallery/espaces-2.webp">
+          <img src="images/gallery/espaces-2.webp" alt="Riad Amirat Al Jamal" loading="lazy">
         </div>
-        <div class="gallery-item" data-full="images/gallery-hammam.jpg">
-          <img src="images/gallery-hammam.jpg" alt="Riad Amirat Al Jamal" loading="lazy">
+        <div class="gallery-item" data-full="images/gallery/espaces-3.webp">
+          <img src="images/gallery/espaces-3.webp" alt="Riad Amirat Al Jamal" loading="lazy">
         </div>
-        <div class="gallery-item large" data-full="images/gallery-terrace-evening.jpg">
-          <img src="images/gallery-terrace-evening.jpg" alt="Riad Amirat Al Jamal" loading="lazy">
+        <div class="gallery-item large" data-full="images/gallery/espaces-4.webp">
+          <img src="images/gallery/espaces-4.webp" alt="Riad Amirat Al Jamal" loading="lazy">
         </div>
-        <div class="gallery-item" data-full="images/about-courtyard.jpg">
-          <img src="images/about-courtyard.jpg" alt="Riad Amirat Al Jamal" loading="lazy">
+        <div class="gallery-item" data-full="images/gallery/espaces-1.webp">
+          <img src="images/gallery/espaces-1.webp" alt="Riad Amirat Al Jamal" loading="lazy">
         </div>
-        <div class="gallery-item" data-full="images/room-jasmin.jpg">
-          <img src="images/room-jasmin.jpg" alt="Riad Amirat Al Jamal" loading="lazy">
+        <div class="gallery-item" data-full="/images/rooms/grand/grand-2.webp">
+          <img src="/images/rooms/grand/grand-2.webp" alt="Riad Amirat Al Jamal" loading="lazy">
+        </div>
+        <div class="gallery-item" data-full="/images/rooms/blue/blue-2.webp">
+          <img src="/images/rooms/blue/blue-2.webp" alt="Riad Amirat Al Jamal" loading="lazy">
+        </div>
+        <div class="gallery-item" data-full="/images/rooms/duplex/duplex-2.webp">
+          <img src="/images/rooms/duplex/duplex-2.webp" alt="Riad Amirat Al Jamal" loading="lazy">
+        </div>
+        <div class="gallery-item" data-full="/images/rooms/rachid/rachid-2.webp">
+          <img src="/images/rooms/rachid/rachid-2.webp" alt="Riad Amirat Al Jamal" loading="lazy">
+        </div>
+        <div class="gallery-item" data-full="/images/rooms/margaret/margaret-2.webp">
+          <img src="/images/rooms/margaret/margaret-2.webp" alt="Riad Amirat Al Jamal" loading="lazy">
         </div>
       </div>
     </div>
@@ -509,7 +524,7 @@
     <div class="container">
       <div class="about-grid">
         <div class="about-image">
-          <img src="images/about-courtyard.jpg" alt="Cour intérieure du Riad Amirat Al Jamal" data-i18n-alt="alt.court">
+          <img src="images/gallery/espaces-6.webp" alt="Cour intérieure du Riad Amirat Al Jamal" data-i18n-alt="alt.court">
         </div>
         <div class="about-content">
           <span class="section-label" data-i18n="about.label">À propos</span>

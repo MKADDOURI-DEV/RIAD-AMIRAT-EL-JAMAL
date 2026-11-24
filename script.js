@@ -164,23 +164,23 @@
   // Gallery Lightbox
   // ============================================
   const galleryItems = Array.from(document.querySelectorAll('.gallery-item'));
+  const roomGalleries = Array.from(document.querySelectorAll('.room-image[data-gallery]'));
   const lightbox = document.getElementById('lightbox');
 
-  if (galleryItems.length > 0 && lightbox) {
+  if ((galleryItems.length > 0 || roomGalleries.length > 0) && lightbox) {
     const lightboxImage = document.getElementById('lightboxImage');
     const lightboxClose = document.getElementById('lightboxClose');
     const lightboxPrev = document.getElementById('lightboxPrev');
     const lightboxNext = document.getElementById('lightboxNext');
     const lightboxCounter = document.getElementById('lightboxCounter');
 
-    const images = galleryItems.map(function (item) {
-      // src de l'image affichée : valable en local comme après le build Vite
-      return item.querySelector('img').src || item.getAttribute('data-full');
-    });
-
+    let images = [];
+    let alts = [];
     let currentIndex = 0;
 
-    function openLightbox(index) {
+    function openLightbox(list, altList, index) {
+      images = list;
+      alts = altList;
       currentIndex = index;
       updateLightboxImage();
       lightbox.classList.add('active');
@@ -193,9 +193,8 @@
     }
 
     function updateLightboxImage() {
-      const alt = galleryItems[currentIndex].querySelector('img').getAttribute('alt') || 'Riad Amirat Al Jamal';
       lightboxImage.setAttribute('src', images[currentIndex]);
-      lightboxImage.setAttribute('alt', alt);
+      lightboxImage.setAttribute('alt', alts[currentIndex] || 'Riad Amirat Al Jamal');
       lightboxCounter.textContent = (currentIndex + 1) + ' / ' + images.length;
     }
 
@@ -209,9 +208,25 @@
       updateLightboxImage();
     }
 
+    // Galerie principale
+    const galleryImages = galleryItems.map(function (item) {
+      return item.querySelector('img').src || item.getAttribute('data-full');
+    });
+    const galleryAlts = galleryItems.map(function (item) {
+      return item.querySelector('img').getAttribute('alt');
+    });
     galleryItems.forEach(function (item, index) {
       item.addEventListener('click', function () {
-        openLightbox(index);
+        openLightbox(galleryImages, galleryAlts, index);
+      });
+    });
+
+    // Photos de chaque chambre (clic sur la photo de la carte)
+    roomGalleries.forEach(function (el) {
+      el.addEventListener('click', function () {
+        const list = el.getAttribute('data-gallery').split(',');
+        const alt = el.getAttribute('data-gallery-alt') || 'Riad Amirat Al Jamal';
+        openLightbox(list, list.map(function () { return alt; }), 0);
       });
     });
 
